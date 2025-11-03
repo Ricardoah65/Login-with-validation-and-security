@@ -1,6 +1,6 @@
 package com.project.loginVaS.dto;
 
-public class Authentication {
+public class AuthRequest {
     private String email;
     private String password;
 
