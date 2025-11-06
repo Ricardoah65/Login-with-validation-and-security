@@ -13,18 +13,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.
-                csrf(csrf -> csrf.disable()).
-                authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/*").permitAll()//rutas permitidas
-                        .anyRequest().authenticated()//autenticar las demás
+        http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/user/**").permitAll()//Permitidas
+                        .anyRequest().authenticated()//Necesitan autorización
                 );
+
         return http.build();
     }
 
-    //Encriptador de contraseña
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
 }
